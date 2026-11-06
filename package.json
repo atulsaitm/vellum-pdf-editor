@@ -1,0 +1,17 @@
+{
+  "name": "pdf-editor",
+  "version": "1.0.0",
+  "description": "A polished, self-contained advanced PDF editor workspace prototype. Open `index.html` directly or serve this folder with any static web server.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^4.4.168"
+  }
+}

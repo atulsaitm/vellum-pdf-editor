@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#111827" />
+    <title>Vellum PDF Studio</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark">V</div>
+          <div>
+            <div class="brand-name">vellum</div>
+            <div class="brand-subtitle">PDF studio</div>
+          </div>
+        </div>
+        <div class="file-context">
+          <div class="status-dot"></div>
+          <span id="fileName">Q3-investor-update.pdf</span>
+          <span class="saved-state" id="savedState">Saved locally</span>
+        </div>
+        <div class="top-actions">
+          <button class="icon-btn" title="Undo" data-action="undo">↶</button>
+          <button class="icon-btn" title="Redo" data-action="redo">↷</button>
+          <span class="divider"></span>
+          <button class="ghost-btn" data-action="share"><span class="btn-icon">↗</span> Share</button>
+          <button class="primary-btn" data-action="export"><span class="btn-icon">↓</span> Export</button>
+          <button class="avatar" title="Account">AS</button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <aside class="left-rail">
+          <div class="rail-section rail-top">
+            <button class="rail-item active" data-panel="pages"><span class="rail-icon">▤</span><span>Pages</span></button>
+            <button class="rail-item" data-panel="outline"><span class="rail-icon">☷</span><span>Outline</span></button>
+            <button class="rail-item" data-panel="comments"><span class="rail-icon">◌</span><span>Review</span><span class="rail-count">4</span></button>
+            <button class="rail-item" data-panel="assets"><span class="rail-icon">⌗</span><span>Assets</span></button>
+          </div>
+          <div class="rail-section rail-bottom">
+            <button class="rail-item" data-action="settings"><span class="rail-icon">⚙</span><span>Settings</span></button>
+            <button class="rail-item" data-action="help"><span class="rail-icon">?</span><span>Help</span></button>
+          </div>
+        </aside>
+
+        <aside class="side-panel" id="sidePanel">
+          <div class="panel-heading">
+            <div>
+              <span class="eyebrow">Document</span>
+              <h2 id="panelTitle">Pages <span class="muted-count">12</span></h2>
+            </div>
+            <button class="square-btn" data-action="collapse-panel">‹</button>
+          </div>
+          <div class="panel-toolbar">
+            <button class="small-tool active">▦</button>
+            <button class="small-tool">☷</button>
+            <button class="small-tool">⇅</button>
+            <button class="small-tool" data-action="add-page">＋</button>
+            <button class="small-tool">⋯</button>
+          </div>
+          <div class="page-search"><span>⌕</span><input placeholder="Find page or heading" /></div>
+          <div class="thumbnail-list" id="thumbnailList"></div>
+          <div class="panel-footer">
+            <span>12 pages</span>
+            <button data-action="open-file">Open PDF</button>
+          </div>
+        </aside>
+
+        <section class="canvas-area">
+          <div class="editor-toolbar">
+            <div class="tool-group">
+              <button class="tool-button active" data-tool="select"><span>↖</span> Select</button>
+              <button class="tool-button" data-tool="text"><span>T</span> Text</button>
+              <button class="tool-button" data-tool="draw"><span>〰</span> Draw</button>
+              <button class="tool-button" data-tool="highlight"><span>▰</span> Highlight</button>
+              <button class="tool-button" data-tool="redact"><span>▮</span> Redact</button>
+              <button class="tool-button" data-tool="comment"><span>◌</span> Comment</button>
+              <button class="tool-button" data-tool="form"><span>□</span> Form field</button>
+            </div>
+            <div class="toolbar-right">
+              <button class="tool-button" data-action="ocr"><span>◎</span> OCR</button>
+              <button class="tool-button" data-action="sign"><span>✒</span> Sign</button>
+              <span class="divider"></span>
+              <button class="icon-btn" data-action="fullscreen" title="Fullscreen">⛶</button>
+            </div>
+          </div>
+          <div class="context-bar">
+            <div class="context-left"><span class="selection-chip" id="toolState">Select mode</span><span class="context-hint" id="contextHint">Click any object to inspect its properties</span></div>
+            <div class="context-right">
+              <button class="view-btn" data-action="fit">Fit</button>
+              <button class="view-btn" data-action="zoom-out">−</button>
+              <span class="zoom-value" id="zoomValue">86%</span>
+              <button class="view-btn" data-action="zoom-in">＋</button>
+              <button class="view-btn" data-action="rotate">↻</button>
+            </div>
+          </div>
+          <div class="canvas-scroll" id="canvasScroll">
+            <div class="page-stage" id="pageStage">
+              <div class="pdf-page mock-page" id="pdfPage">
+                <canvas id="pdfCanvas"></canvas>
+                <div class="page-topline"><span>VELLUM / CONFIDENTIAL</span><span>Q3 2024</span></div>
+                <div class="page-hero"><div class="hero-kicker">INVESTOR UPDATE · 03</div><h1>Building the<br /><em>quiet infrastructure</em><br />of modern work.</h1><p class="hero-copy">Open a PDF to render its real pages here. Your local file stays in the browser.</p><div class="hero-meta"><span>Vellum, Inc.</span><span>September 2024</span><span>Local preview</span></div></div>
+                <div class="page-graphic"><div class="orb orb-one"></div><div class="orb orb-two"></div><div class="orb orb-three"></div><div class="graphic-line line-one"></div><div class="graphic-line line-two"></div><div class="graphic-label">signal / clarity / scale</div></div>
+                <div class="page-foot"><span>01</span><span>vellum.studio</span></div>
+                <div class="annotation-layer" id="annotationLayer"></div>
+              </div>
+            </div>
+          </div>
+          <div class="statusbar">
+            <span id="pageStatus">Page 1 of 12</span><span class="status-separator"></span><span>4 comments</span><span class="status-separator"></span><span>Accessibility: AA</span>
+            <div class="status-right"><span class="sync-dot"></span> All changes synced</div>
+          </div>
+        </section>
+
+        <aside class="inspector">
+          <div class="inspector-header"><div><span class="eyebrow">Inspector</span><h2 id="inspectorTitle">Page properties</h2></div><button class="square-btn" data-action="close-inspector">×</button></div>
+          <div class="inspector-tabs"><button class="active">Design</button><button>Content</button><button>Accessibility</button></div>
+          <div class="inspector-body">
+            <section class="inspector-section"><div class="section-title">Page setup <span>⌃</span></div>
+              <div class="field-grid"><label>Width<input value="8.5 in" /></label><label>Height<input value="11 in" /></label></div>
+              <label class="field-label">Orientation<select><option>Portrait</option><option>Landscape</option></select></label>
+              <div class="toggle-row"><div><strong>Bleed guides</strong><small>Show print-safe area</small></div><button class="toggle" data-toggle="bleed"><span></span></button></div>
+            </section>
+            <section class="inspector-section"><div class="section-title">Appearance <span>⌃</span></div>
+              <div class="swatch-row"><span>Background</span><button class="color-swatch dark"></button><span>#121820</span></div>
+              <div class="swatch-row"><span>Accent</span><button class="color-swatch coral"></button><span>#F0775F</span></div>
+              <div class="range-row"><span>Opacity</span><input type="range" value="100" /><span>100%</span></div>
+            </section>
+            <section class="inspector-section"><div class="section-title">Document intelligence <span>⌃</span></div>
+              <div class="insight-card"><span class="insight-icon">✦</span><div><strong>AI summary ready</strong><p>3 key topics detected on this page.</p></div><button>View</button></div>
+              <div class="insight-card"><span class="insight-icon green">✓</span><div><strong>Structure is tagged</strong><p>Heading hierarchy looks healthy.</p></div><button>Check</button></div>
+            </section>
+            <section class="inspector-section advanced-section"><div class="section-title">Advanced <span>⌄</span></div></section>
+          </div>
+          <div class="inspector-bottom"><button class="secondary-btn" data-action="duplicate">Duplicate page</button><button class="danger-btn" data-action="delete">Delete</button></div>
+        </aside>
+      </main>
+    </div>
+    <div class="toast" id="toast"></div>
+    <input type="file" id="fileInput" accept="application/pdf,.pdf" hidden />
+    <div class="modal-backdrop" id="modalBackdrop">
+      <div class="modal" id="modal">
+        <button class="modal-close" data-action="close-modal">×</button>
+        <div class="eyebrow" id="modalEyebrow">WORKFLOW</div><h2 id="modalTitle">Optical character recognition</h2><p id="modalText">Run an intelligent OCR pass to make scanned pages searchable, selectable, and ready for structured editing.</p>
+        <div class="modal-options" id="modalOptions"></div>
+        <div class="modal-actions"><button class="secondary-btn" data-action="close-modal">Cancel</button><button class="primary-btn" data-action="modal-confirm">Start workflow</button></div>
+      </div>
+    </div>
+    <script src="vendor/pdf-lib.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
